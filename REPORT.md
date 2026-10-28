@@ -79,9 +79,8 @@ public Calculator(OperationStrategy strategy) {
 ```
 
 The context receives its dependency rather than constructing a concrete
-strategy. It knows only the `execute` contract. A custom lambda in the test
-returns the sum of squared operands, demonstrating that the context also accepts
-an implementation absent from its source code.
+strategy. It knows only the `execute` contract, so another implementation can
+be supplied without introducing a dependency on its concrete class.
 
 ### 3.5 Extend behavior without modifying stable classes
 
@@ -128,12 +127,10 @@ extension of algorithms. The cost is an interface and several small classes,
 which can be excessive for a tiny calculator but make this assignment's
 separation of responsibilities explicit.
 
-The code compiles with JDK 21.0.10 using `--release 17 -Xlint:all -Werror` and
-passes 17 checks on Java 21. Both demonstrations run successfully. Checks include
-runtime switching, switching back, operand order, decimals, a custom strategy,
-null strategies and division by both signed zeros. Java 17-compatible class files
-were produced; a Java 17 runtime was not available for a separate execution test.
-The example follows normal `double` rounding and overflow behavior.
+The code was compiled with JDK 21.0.10 using `--release 17 -Xlint:all -Werror`.
+Both demonstrations run successfully, showing runtime switching and division
+error handling. The generated classes target Java 17. The example follows normal
+`double` rounding and overflow behavior.
 
 
 ## 6. Link to the GitHub repository
